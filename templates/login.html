@@ -1,0 +1,81 @@
+<!--login-->
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <title>Example SQL Injection</title>
+        <link rel="shortcut icon" href="{{ url_for('fav', filename='favicon.ico') }}">
+        <meta charset="utf-8">
+        <style>
+            html{
+                height: 60%;
+                background-color: rgb(218, 218, 218);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            body{
+                display: block;
+                align-items: center;
+                justify-content: center;
+                height: 300px;
+                width: 170px;
+                padding: 2%;
+                border: 2px solid rgb(141, 141, 141);
+                border-radius: 3%;
+                font-family: Verdana;
+                background-color: rgb(240, 240, 240);
+                position: relative;
+                z-index: -1;
+                text-align: center;
+            }
+            .field{
+                padding: 0%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                flex-wrap: wrap;
+                bottom: 20px;
+            }
+            .buttons {
+                display: block;
+                text-align: center;
+            }
+            .info{
+                font-size: 10px;
+                margin:0 ;
+                color: gray;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form class="field" method="POST">
+            <p>Login</p>
+            <p><input type="text" name="username" placeholder="username" /></p>
+            <p><input type="password" name="password" placeholder="password" /></p>
+            <div class="buttons">
+                <p><input type="submit" name="login" value="Login" /></p>
+                <p><input type="submit" name="register_instead" value="Register instead" /></p>
+                <p><input type="submit" name="truncate_users_table" value="Truncate users table" /></p>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message == "Register succesful!" %}
+                        <p style="color:green;">{{ message }}</p>
+                    {% endif %}
+                    {% if message == "Login failed!" %}
+                        <p style="color:red;">{{ message }}</p>
+                    {% endif %}
+                    {% if message == "Table truncated!" %}
+                        <p style="color:blue;">{{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </body>
+
+</html>

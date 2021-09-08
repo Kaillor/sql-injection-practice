@@ -1,0 +1,24 @@
+﻿<!--index-->
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Example SQL Injection</title>
+        <link rel="shortcut icon" href="{{ url_for('fav', filename='favicon.ico') }}">
+        <meta charset="utf-8">
+        <style>
+            body{
+                font-family: Verdana;
+                background-color: lightgray;
+            }
+            form{
+                margin-top: 1vh;
+            }
+            th{
+                background-color: rgb(184, 184, 184);
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Login succesful!<br /><br />Username: {{name}}<br />Password: {{passw}}</h3>
+    </body>
+</html>
