@@ -10,7 +10,7 @@ def return_my_database_cursor():
                     host="127.0.0.1",
                     user="root",
                     password="password",
-                    database="sql_injection"
+                    database="sql_injection_practice"
                     )
         return my_database, my_database.cursor()
 
@@ -27,6 +27,8 @@ def login_checker(username, password):
     
 # Register injectable
 def register_checker(username, password):
+    if len(username) > 20 or len(password) > 20 or username == "":
+        return False
     my_database, my_cursor = return_my_database_cursor()
     my_cursor.execute("SELECT * FROM users WHERE username = '" + username + "';")
     my_result = my_cursor.fetchall()

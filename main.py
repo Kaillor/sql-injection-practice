@@ -63,6 +63,3 @@ def register():
 @app.route('/favicon.ico')
 def fav():
     return send_from_directory(os.path.join(app.root_path, 'img'),'favicon.ico')
-
-if __name__ == '__main__':
-    app.run(port=1337, debug=True)
