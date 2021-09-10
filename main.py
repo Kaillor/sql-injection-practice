@@ -3,7 +3,7 @@ import os
 
 
 # import my_data or my_data_safe
-import my_data_safe as data
+import my_data as data
 
 
 app = Flask(__name__)

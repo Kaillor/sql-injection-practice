@@ -4,11 +4,11 @@ import mysql.connector
 # Connection to database
 def return_my_database_cursor():
     my_database = mysql.connector.connect(
-                    host="127.0.0.1",
-                    user="root",
-                    password="password",
-                    database="sql_injection_practice"
-                    )
+        host="127.0.0.1",
+        user="root",
+        password="password",
+        database="sql_injection_practice"
+        )
     return my_database, my_database.cursor()
 
 

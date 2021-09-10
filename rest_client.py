@@ -3,7 +3,7 @@ import requests
 
 url = 'http://127.0.0.1:5000'
 
-auto_inject = True
+auto_inject = False
 auto_injection = "'; INSERT INTO users (username, password) VALUES ('injection','succesful'); COMMIT;--"
 
 
@@ -28,7 +28,7 @@ while(repeat):
             else:
                 print('Error ' + str(request.status_code))
         except(WindowsError):
-            print('No response from server!')
+            print('No response from the server!')
 
     elif(task == 'r'):
         try:
@@ -40,7 +40,7 @@ while(repeat):
             else:
                 print('Error ' + str(request.status_code))
         except(WindowsError):
-            print('No respones from server!')
+            print('No response from the server!')
 
     elif(task == 't'):
         try:
@@ -50,18 +50,18 @@ while(repeat):
             else:
                 print('Error ' + str(request.status_code))
         except(WindowsError):
-            print('No response from server!')
+            print('No response from the server!')
 
     elif(auto_inject):
         try:
             request = requests.post(url + '/login', data={'username': auto_injection, 'password': '', 'login': 'Login'})
         except(WindowsError):
-            print('No response from server!')
+            print('No response from the server!')
 
 
     # repeat?
     repeat_input = ''
     while(repeat_input != 'y' and repeat_input != 'n' and not auto_inject):
-        repeat_input = input('Do you want to do another request? (y/n) ')
+        repeat_input = input('Do you want to send another request? (y/n) ')
     if(repeat_input != 'y'):
         repeat = False
