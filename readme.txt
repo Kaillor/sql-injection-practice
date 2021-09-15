@@ -65,12 +65,12 @@ setup my own database which would hold the information of the registered users.
 
 	Database
 
-To setup my own database, I used the MySQL Workbench application. Run the program and click  next to "MySQL Connections" to create a new connection. For the purpose of this practice, just give it a simple name like "SQL Injection
+To setup my own database, I used the MySQL Workbench application. Run the program and click "+" next to "MySQL Connections" to create a new connection. For the purpose of this practice, just give it a simple name like "SQL Injection
 Practice" and leave all other options as their default. If you chose another username than "root" during the installation process, you might need to change the "Username" value to your username while creating the connection. You can
 always right click on the connection afterwards and choose "Edit Connection" to change these settings. After creating the connection, you can open it by simply clicking on it and typing in the password you set during the installation.
 If you want to, you can tick the box next to "Save password in vault" so you no longer need to type in your password everytime you open any connection with this user. Now, you can create a new schema and a table within it that stores
 the usernames and passwords of the registered users. You can do this using the built in functions of MySQL Workbench or run a written query. The following query creates a schema called "sql_injection_practice" and a table within it
-called "users" with the 3 attributes "user_id", "username" and "password". Copy the query into the query tab of MySQL Workbench and execute it by clicking  or using the keyboard shortcut Control+Shift+Enter.
+called "users" with the 3 attributes "user_id", "username" and "password". Copy the query into the query tab of MySQL Workbench and execute it by clicking the thunderbolt or using the keyboard shortcut Control+Shift+Enter.
 
 Query 1
 
