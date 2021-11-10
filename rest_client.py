@@ -4,7 +4,7 @@ import requests
 url = 'http://127.0.0.1:5000'
 
 auto_inject = False
-auto_injection = "'; INSERT INTO users (username, password) VALUES ('injection','succesful'); COMMIT;--"
+auto_injection = "'; INSERT INTO users (username, password) VALUES ('injection','successful'); COMMIT;--"
 
 
 repeat = True
@@ -22,7 +22,7 @@ while(repeat):
         try:
             request = requests.post(url + '/login', data={'username': username, 'password': password, 'login': 'Login'})
             if(request.text.splitlines()[0] == '﻿<!--index-->'):
-                print('Login succesful!')
+                print('Login successful!')
             elif(request.text.splitlines()[0] == '<!--login-->'):
                 print('Login failed!')
             else:
@@ -34,7 +34,7 @@ while(repeat):
         try:
             request = requests.post(url + '/register', data={'username': username, 'password': password, 'register': 'Register'})
             if(request.text.splitlines()[0] == '<!--login-->'):
-                print('Register succesful!')
+                print('Register successful!')
             elif(request.text.splitlines()[0] == '<!--register-->'):
                 print('Register failed!')
             else:

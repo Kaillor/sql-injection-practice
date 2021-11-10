@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\SWISSCOM\OneDrive - Swisscom\Projekte\Smart Business Connect\example_sql_injection\venv
+set VIRTUAL_ENV=C:\Users\taagilu6\OneDrive - Swisscom\Projekt 1 - Smart Business Connect (Voip für KMU Vulnerabilities and Exploits finden) - Felix Pfrunder\SQL_Injection_Practice\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

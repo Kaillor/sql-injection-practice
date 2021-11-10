@@ -44,7 +44,7 @@ def register():
         username = (request.form['username'])
         password = (request.form['password'])
         if data.register_checker(username, password):
-            flash("Register succesful!")
+            flash("Register successful!")
             return redirect(url_for('login'))
         else:
             flash("Register failed!")
