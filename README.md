@@ -6,15 +6,15 @@ The website contains two pages. One to register a new user and one to login as a
 
 Additionally, I created a rest client with which the webapplication can be navigated manually in a console window or automatically performs an SQL injection. At the end of this article, I also provide instructions on how to use SQLMAP. A tool to detect SQL injection vulnerabilities and display data from the database you are not supposed be able to access.
 ## Programs and Tools
-##### Python
+#### Python
 Since I am writing the code for the webapplication in the Python programming language, I needed to download Python and install it. This is very straight forward. Just download the installer from [python.org](https://www.python.org/downloads/) and install it. Make sure to add Python to PATH, so you can execute Python commands from anywhere inside a command prompt window.
-##### Microsoft Visual Studio
+#### Microsoft Visual Studio
 To work on the project, I chose the integrated development environment Microsoft Visual Studio. The installer can be downloaded at [visualstudio.microsoft.com](https://visualstudio.microsoft.com/). Go through the installation process and choose to install "Python development" and ".NET desktop development". The latter of which is needed so the MySQL database management system can install additional tools that connect to Visual Studio. I make no use of these tools in this project but since I am already installing both programs, I might aswell install these features for the future.
-##### MySQL
+#### MySQL
 The MySQL installer can be downloaded at dev.mysql.com. It can install various Programs and Tools to work with the MySQL database management system. For reasons of simplicity, choose "Full" as the setup type and leave all options as is. After the installation is complete, you need to choose a username and password. For the purpose of this practice, you can leave the username as "root" and set a simple password like "password".
 ## Preparation
 Since i had no prior experience with SQL and the Flask framework, I started by completing a Flask tutorial at [flask.palletsprojects.com](https://flask.palletsprojects.com/en/2.0.x/). With this, I learned the basics of how to develop a webapplication using Flask. After that, I looked into MySQL using [mysqltutorial.org](https://www.mysqltutorial.org/mysql-basics/) and learned how to setup simple databases and manipulate the data within them. Additionally, I spent some time learning about the basic concept of the SQL injection vulnerability. For the next step, I read through the article of David Abderhalden and downloaded his project at [github.com](https://github.com/David-Abderhalden-1/Example_SQL_Injection_Simple). I followed his documentation to understand the code he wrote and comprehend his thought process. To run his webapplication, I needed to setup my own database which would hold the information of the registered users.
-##### Database
+#### Database
 To setup my own database, I used the MySQL Workbench application. Run the program and click the plus sign next to "MySQL Connections" to create a new connection. For the purpose of this practice, just give it a simple name like "SQL Injection Practice" and leave all other options as their default. If you chose another username than "root" during the installation process, you might need to change the "Username" value to your username while creating the connection. You can always right click on the connection afterwards and choose "Edit Connection" to change these settings. After creating the connection, you can open it by simply clicking on it and typing in the password you set during the installation. If you want to, you can tick the box next to "Save password in vault" so you no longer need to type in your password everytime you open any connection with this user. Now, you can create a new schema and a table within it that stores the usernames and passwords of the registered users. You can do this using the built in functions of MySQL Workbench or run a written query. The following query creates a schema called "sql_injection_practice" and a table within it called "users" with the 3 attributes "user_id", "username" and "password". Copy the query into the query tab of MySQL Workbench and execute it by clicking the thunderbolt icon or using the keyboard shortcut Control+Shift+Enter.
 ```sql
 CREATE SCHEMA sql_injection_practice;
@@ -25,7 +25,7 @@ CREATE TABLE users (
     password VARCHAR(20)
 );
 ```
-##### Running The Server
+#### Running The Server
 If you downloaded my project, you are ready to try out the webapplication. Open the project in your integrated development environment of choice. If you set everything up as i described, the application should be working as is. However, if you chose different names and values for some of the options, you need to adjust these in the code. Open the files "my_data.py" and "my_data_safe.py" and adjust the values of the variables in the following code with the ones you set during the installation process of MySQL and the creation of the connection in MySQL Workbench.
 ```python
 my_database = mysql.connector.connect(
@@ -51,7 +51,7 @@ venv\scripts\activate
 set FLASK_APP=main
 flask run
 ```
-##### Try It Out
+#### Try It Out
 After starting the server, you can acces the website like any other using an internet browser. Open your browser of choice and enter the URL [localhost:5000](http://localhost:5000/). This brings you to the login page of the webapplication. If this URL does not work, check the command prompt window in which you started the server. It should display the URL of the webapplication on the last line in the following format.
 ```
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
@@ -63,7 +63,7 @@ SELECT * FROM users;
 ```
 ## Development
 After I wrapped my head around the code and concept of the original webapplication from David Abderhalden, I started to change and expand the project. I added a page to register new users directly on the website and implemented a lot of improvements that enhance the user experience.
-##### main.py
+#### main.py
 ```python
 from flask import Flask, request, render_template, escape, redirect, url_for, send_from_directory, flash
 import os
@@ -145,7 +145,7 @@ def fav():
     return send_from_directory(os.path.join(app.root_path, 'img'),'favicon.ico')
 ```
 The last few lines are used to display the favicon on a page which is used by the html templates to display the icon next to the name of the page in the browser.
-##### my_data.py
+#### my_data.py
 ```python
 import mysql.connector
 
@@ -204,7 +204,7 @@ def truncate_users_table():
 The "truncate_users_table" function is called when the "Truncate users table" button is clicked and simply deletes all entries of the database.
 ## SQL Injection
 An SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. This means, it might allow an attacker to execute any unauthorized queries they wish on databases the webapplication is connected to. This can lead to an attacker inserting and most importantly reading data from a database. This might include usernames, passwords, e-mail adresses, banking details, etc.
-##### The Problem
+#### The Problem
 The functions of the "my_data.py" file concatenate the user input directly into the query before execution. Because of this, an attacker can influence the query with what he types into the login and register forms.
 
 For example, by typing
@@ -232,7 +232,7 @@ SELECT * FROM users WHERE username = ''; TRUNCATE TABLE users;--' AND password =
 and therefore deletes all entries from the database.
 
 Using this method, an attacker can pretty much execute any query he wants in the database connected to the webapplication.
-##### The Solution
+#### The Solution
 To prevent this vulnerability, instead of concatenating the user input directly into the query, create a prepared statement with placeholders for the user input. Then, execute the query by providing the prepared statement together with the user input as arguments to the cursor of the connection to the database.
 
 To use this method in the functions from the "my_data.py" file, we firstly need to allow the "return_my_database_cursor" function to return a cursor with the prepared parameter set to "True".
@@ -297,7 +297,7 @@ To navigate the webapplication using just a console window or automatically perf
 ```
 python rest_client.py
 ```
-##### Manual Usage
+#### Manual Usage
 The rest client uses the "requests" library to send and receive data to and from the webserver run by Flask. First, it asks the user whether he wants to login, register or truncate the users table. The user can choose by typing the corresponding letter and hitting enter.
 ```
 What do you want to do?
@@ -330,7 +330,7 @@ if(task == 'l'):
         print('No response from server!')
 ```
 The code that runs when the user chooses to register or truncate the users table works fundamentally the same and should therefore be self explanatory. At the end, the rest client asks the user whether he wants to send another request. If he chooses to do so, the rest client restarts from the beginning and asks the user again what he wants to do. Otherwise, the program simply ends.
-##### Auto Injection
+#### Auto Injection
 The rest client provides the option to automatically perform an SQL injection within the username field of the login form. To do this, simply change the value of the "auto_inject" variable to "True" and choose the string that should be sent as the username to the webserver using the variable "auto_injection". Afterwards, run the rest client. An example is provided that inserts a new row into the database with the username "injection" and the password "successful".
 ```python
 auto_inject = False
@@ -341,7 +341,7 @@ SQLMAP is an open source penetration testing tool that automates the process of 
 ```
 python sqlmap.py -h
 ```
-##### Online Demonstration
+#### Online Demonstration
 The Website [testphp.vulnweb.com](http://testphp.vulnweb.com/) is specifically designed with SQL injection vulnerabilities to showcase the effectiveness of SQLMAP. The following command runs some basic tests against one of its pages to find vulnerable points. During testing, SQLMAP asks some questions based on what it finds. Just answer all of them with "y".
 ```
 python sqlmap.py -u http://testphp.vulnweb.com/listproducts.php?cat=1
@@ -440,7 +440,7 @@ Table: artists
 | lyzae   |
 +---------+
 ```
-##### Project Demonstration
+#### Project Demonstration
 Pretty much the same procedure works for the webapplication of this project although there is one key difference. Since this webapplication uses a post request to get the data from the login and request forms, you need to provide some dummy data to SQLMAP. This guarantees that the appropriate code, that executes the queries using the data, runs. Therefore, the following command performs some basic tests on the login form. The form data is provided using the parameter "--data". Since the webapplication uses the name of the button that is clicked to run the appropriate code, you need to add that aswell.
 ```
 python sqlmap.py -u http://localhost:5000/login --data="username=dummy&password=dummy&login=Login"
