@@ -4,7 +4,7 @@ I created a simple webapplication designed to show off SQL Injection. To do this
 
 The website contains two pages. One to register a new user and one to login as a registered user. The forms on these pages are designed to be SQL injectable, but i provide alternative code examples to show how to prevent these kinds of injections.
 
-Additionally, I created a rest client with which the webapplication can be navigated manually in a console window or automatically performs an SQL injection. At the end of this article, I also provide instructions on how to use SQLMAP. A tool to detect SQL injection vulnerabilities and display data from the database you are not supposed be able to access.
+Additionally, I created a rest client with which the webapplication can be navigated manually in a console window or automatically performs an SQL injection. At the end of this article, I also provide instructions on how to use SQLMAP. A tool to detect SQL injection vulnerabilities and display data from the database you are not supposed to be able to access.
 ## Programs and Tools
 #### Python
 Since I am writing the code for the webapplication in the Python programming language, I needed to download Python and install it. This is very straight forward. Just download the installer from [python.org](https://www.python.org/downloads/) and install it. Make sure to add Python to PATH, so you can execute Python commands from anywhere inside a command prompt window.
