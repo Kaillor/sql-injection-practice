@@ -137,7 +137,7 @@ def register():
     else:
         return render_template('register.html')
 ```
-This is the function that gets triggered when visiting the register page at [http://localhost:5000/register](http://localhost:5000/register). The structure is identical to the login page and should therefore be self explanatory. The "register_checker" function from the "my_data.py" file returns "True" if the username is not already present in the database, contains at least one character and both the username and password are not longer than 20 characters. If that is the case, the credentials are added to the database. Otherwise, it returns "False" and refuse to add the credentials to the databse.
+This is the function that gets triggered when visiting the register page at [http://localhost:5000/register](http://localhost:5000/register). The structure is identical to the login page and should therefore be self explanatory. The "register_checker" function from the "my_data.py" file returns "True" if the username is not already present in the database, contains at least one character and both the username and password are not longer than 20 characters. If that is the case, the credentials are added to the database. Otherwise, it returns "False" and refuses to add the credentials to the database.
 ```python
 # Route to favicon
 @app.route('/favicon.ico')
