@@ -8,7 +8,7 @@ itsdangerous==2.0.1
 Jinja2==3.0.2
 MarkupSafe==2.0.1
 mysql-connector-python==8.0.27
+urllib3==1.26.18
 protobuf==3.19.5
 requests==2.31.0
-urllib3==1.26.7
 Werkzeug==3.0.1
