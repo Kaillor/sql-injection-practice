@@ -9,6 +9,6 @@ Jinja2==3.1.6
 MarkupSafe==2.0.1
 mysql-connector-python==9.1.0
 urllib3==1.26.19
-protobuf==3.19.5
+protobuf==4.25.8
 requests==2.32.4
 Werkzeug==3.0.6
